@@ -1,4 +1,5 @@
 const express = require('express')
+
 const bodyParser = require('body-parser')
 
 const app = express()
@@ -11,8 +12,15 @@ app.set('views', './views')
 // 托管静态资源
 app.use('/node_modules', express.static('./node_modules'))
 
-// 注册body-parser中间件  注册以后才可以在req中使用body对象获取客户端post提交过来的数据
-app.use(bodyParser.urlencoded({ extended: false }))
+
+
+// 设置 默认采用的模板引擎名称
+app.set('view engine', 'ejs')
+// 设置模板页面的存放路径
+app.set('views', './views')
+
+// 注册解析表单数据的中间件
+ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/',(req,res) => {
   res.render('./index.ejs',{})
@@ -29,4 +37,3 @@ app.use(userRouter)
 
 app.listen(80, () => {
   console.log('http://127.0.0.1');
-})
