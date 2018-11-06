@@ -46,24 +46,24 @@
 
   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
   <script>
-    $(function () {
-      $('#form').on('submit', function (e) {
-        // 组织表单的默认提交行为
-        e.preventDefault()
+    $(function () {  
+      $('#form').on('submit', function () {
         $.ajax({
           url: '/login',
-          data: $('#form').serialize(),
           type: 'POST',
+          data: $('#form').serialize(),
           dataType: 'json',
-          success: function (result) {
-            console.log(result);
-            if (result.status !== 200) {
-              // 登录失败
-              return alert(result.msg)
+          success: function (result) {  
+            if (result.status === 200) {
+              alert(result.msg)
+              location.href = '/'
             }
-            location.href = '/'
+          },
+          error: function (err) {
+            alert(err.responseJSON.msg)
           }
         })
+        return false;
       })
     })
   </script>

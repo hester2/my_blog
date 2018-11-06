@@ -1,0 +1,2 @@
+1、首先清除你的npm缓存： 
+sudo npm cache clean -f 一般情况执行完后再试下 应该就OK了 
