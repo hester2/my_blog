@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // 只要注册了session的中间件, 以后任何一个可以使用req对象的地方都可以访问到req.session
 app.use(session({
-  secret: 'blog niubility',
+  secret: 'my_blog niubility',
   resave: false,
   saveUninitialized: false
 }))
